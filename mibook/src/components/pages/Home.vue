@@ -154,29 +154,29 @@ export default {
   components: {
     HeaderBar
   },
-   methods: {
-    handleTabChange (val) {
-      this.activeTab = val
-    },
-    handleActive () {
-      // window.alert('tab active')
-    },
-    linkToSearch(){
-      router.push({path: 'search'})
-    }
+  //  methods: {
+  //   handleTabChange (val) {
+  //     this.activeTab = val
+  //   },
+  //   handleActive () {
+  //     // window.alert('tab active')
+  //   },
+  //   linkToSearch(){
+  //     router.push({path: 'search'})
+  //   }
     
-  },
-  computed: {
-      item () {
-        return this.$store.state.items[this.$route.params.id]
-      }
-  },
-  beforeMount () {
-      fetchItem(this.$store)
-      fetchItemComments(this.$store).then(() => {
-        this.displayComments = this.$store.state.comments[this.$route.params.id]
-      })
-  }
+  // },
+  // computed: {
+  //     item () {
+  //       return this.$store.state.items[this.$route.params.id]
+  //     }
+  // },
+  // beforeMount () {
+  //     fetchItem(this.$store)
+  //     fetchItemComments(this.$store).then(() => {
+  //       this.displayComments = this.$store.state.comments[this.$route.params.id]
+  //     })
+  // }
    
 }
 </script>
