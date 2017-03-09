@@ -1,8 +1,8 @@
 <template>
     <div class="header-bar">
         <mu-appbar :title="title" :zDepth=2 class="top-fixed">
-            <mu-icon-button :icon="icon" :url="url" slot="left" @click="linkTo"/>
-            <mu-icon-button icon="search" slot="right" @click="letShow"/> 
+            <mu-icon-button :icon="leftIcon" :url="url" slot="left" @click="linkTo"/>
+            <mu-icon-button :icon="rightIcon" slot="right" @click="letShow"/> 
         </mu-appbar>
 
         <mu-appbar :zDepth="1" class="top-fixed search-box" v-if="!show">
@@ -19,7 +19,7 @@ const router = new Router();
 
 export default {
   name: 'headerBar',
-  props: ['title','icon','url'],
+  props: ['title','leftIcon','rightIcon', 'url'],
   data () {
     return {
        show: true,
@@ -30,7 +30,8 @@ export default {
       router.push({path: this.url})
     },
     letShow(){
-      this.show = false;
+        this.show = false;
+        
     },
     letHide(){
       this.show = true;
@@ -40,7 +41,8 @@ export default {
 }
 </script>
 
-<style>
+<!--注意：这里使用 scoped的话，即使此组件作为子组件分配给其他组件，在其他组件中这里的样式也无效-->
+<style lang="scss">
 .mu-appbar{
     height: 40px;
     background-color: #2fbcd3;
@@ -69,5 +71,6 @@ export default {
 }
 .cancle{
     color: #2fbcd3;
+    cursor: pointer;
 }
 </style>

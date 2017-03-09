@@ -20,9 +20,4 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
-.full{
-  width: 100vw;
-  height: 100vh;
-
-}
 </style>
