@@ -32,13 +32,13 @@
       </div>
       <div v-if="activeTab === 'rank'" class="tab-container">
         <div class="rank-list">
-          <div class="rank-item" v-for="rankItem in rankList">
+          <div class="rank-item" v-for="rankItem in rankList" :key="rankItem.bookId">
             <div class="rank-item-left">
               <p class="rank-item-title">{{rankItem.title}}</p>
             </div>
             <div class="rank-item-body">
               <div class="rank-books">
-                <div class="rank-book" v-for="book in rankItem.books">
+                <div class="rank-book" v-for="(book, index) in rankItem.books" :key="index">
                   {{book}}
                 </div>
               </div>
@@ -48,7 +48,7 @@
       </div>
       <div v-if="activeTab === 'category'" class="tab-container">
         <!--<mu-sub-header>全部分类</mu-sub-header>-->
-        <mu-list v-for="categoryItem in categoryList">  
+        <mu-list v-for="categoryItem in categoryList" :key="categoryItem.bookId">  
            <mu-list-item  :title="categoryItem.title" titleClass="tal" describeTextClass="tal">
             <mu-avatar :src="categoryItem.image" slot="leftAvatar"/>
             <span slot="describe">
@@ -70,6 +70,9 @@
 <script>
 import Router from 'vue-router'
 const router = new Router();
+import ajax from '../../ajax'
+import server from '../../server/server'
+
 
 // 引入子组件
 import HeaderBar from '../include/HeaderBar';
@@ -77,19 +80,6 @@ import HeaderBar from '../include/HeaderBar';
 import book1 from '../../assets/images/book1.jpg'
 import book2 from '../../assets/images/book2.jpg'
 import book3 from '../../assets/images/book3.jpg'
-
- function fetchItem(store) {
-    return store.dispatch('FETCH_ITEMS', {
-      ids: [store.state.route.params.id]
-    })
-  }
-  function fetchItemComments(store) {
-    return store.dispatch('FETCH_ITEM_COMMENTS', {
-      id: store.state.route.params.id
-    })
-  }
-
-
 
 
 export default {
@@ -151,21 +141,45 @@ export default {
        ]
     }
   },
+  // 组件挂载后
+  mounted (){
+    this.getList();
+  },
   components: {
     HeaderBar
   },
-  //  methods: {
-  //   handleTabChange (val) {
-  //     this.activeTab = val
-  //   },
-  //   handleActive () {
-  //     // window.alert('tab active')
-  //   },
-  //   linkToSearch(){
-  //     router.push({path: 'search'})
-  //   }
+  methods: {
+    handleTabChange (val) {
+      this.activeTab = val
+    },
+    handleActive () {
+      // window.alert('tab active')
+    },
+    linkToSearch(){
+      router.push({path: 'search'})
+    },
+    getList (){
+      let self = this;
+      ajax({
+        url: 'http://dushu.xiaomi.com/hs/v3/channel/418',
+        method: 'GET',
+        successCallback: function(res){
+          console.log(res);
+          self.$set('list',res.others);
+          console.log(self.list);
+        },
+        errorCallback: function(error){
+          console.log(error)
+        }
+      })
+      // ajax('http://dushu.xiaomi.com/hs/v3/channel/418',function(res){
+      //   console.log(res);
+      // })
+      
+    }
+
     
-  // },
+  }
   // computed: {
   //     item () {
   //       return this.$store.state.items[this.$route.params.id]

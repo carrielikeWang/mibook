@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Router from 'vue-router'
 import MuseUI from 'muse-ui'
+import VueResource from 'vue-resource'
 import 'muse-ui/dist/muse-ui.css'
 
 import Home from '@/components/pages/Home'
@@ -10,7 +11,7 @@ import Bookshelf from '@/components/pages/Bookshelf'
 import Search from '@/components/pages/Search'
 
 
-
+Vue.use(VueResource)
 Vue.use(Router)
 Vue.use(Vuex)
 Vue.use(MuseUI)
