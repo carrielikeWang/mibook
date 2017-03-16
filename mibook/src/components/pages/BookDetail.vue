@@ -1,7 +1,7 @@
 <template>
   <div class="bookdetail">
     <!--头部导航-->
-    <headerBar :title="title" leftIcon="arrow_back" rightIcon="" url="/bookshelf"></headerBar>
+    <headerBar :title="title" leftIcon="arrow_back" @leftClick="goBack"></headerBar>
 
     <!--主体部分-->
     <mu-card class="grid-container">
@@ -21,11 +21,6 @@
       </mu-card-actions>
     </mu-card>
 
-    
-
-
-
-
   </div>
 </template>
 
@@ -37,7 +32,7 @@ import HeaderBar from '../include/HeaderBar';
 import book1 from '../../assets/images/book1.jpg'
 
 export default {
-  name: 'home',
+  name: 'bookdetail',
   data () {
     return {
        title: "三生三世十里桃花",
@@ -50,7 +45,9 @@ export default {
     headerBar: HeaderBar
   },
   methods: {
-
+    goBack(){
+      window.history.back();
+    }
   }
    
 }

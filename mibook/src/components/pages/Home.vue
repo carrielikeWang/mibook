@@ -1,7 +1,7 @@
 <template>
   <div class="bookshelf">
     <!--头部导航-->
-    <HeaderBar title="觅书" leftIcon="bookshelf" rightIcon="search" url="bookshelf"></HeaderBar>
+    <HeaderBar title="觅书" rightIcon="bookshelf" @rightClick="linkToBookshelf"></HeaderBar>
 
     <!--主体部分-->
     <div class="gridlist-container">
@@ -48,15 +48,14 @@
       </div>
       <div v-if="activeTab === 'category'" class="tab-container">
         <!--<mu-sub-header>全部分类</mu-sub-header>-->
-        <mu-list v-for="categoryItem in categoryList" :key="categoryItem.bookId">  
-           <mu-list-item  :title="categoryItem.title" titleClass="tal" describeTextClass="tal">
+        <mu-list>  
+           <mu-list-item  :title="categoryItem.title"  v-for="categoryItem in categoryList" :key="categoryItem.bookId" @click.native="linkToCategory(categoryItem.bookId)" titleClass="tal" describeTextClass="tal">
             <mu-avatar :src="categoryItem.image" slot="leftAvatar"/>
             <span slot="describe">
               {{categoryItem.description}}
             </span>
-            
           </mu-list-item>
-           <mu-divider inset/>
+           
         </mu-list>
       </div>
     </div>
@@ -145,6 +144,7 @@ export default {
   mounted (){
     this.getList();
   },
+  //子组件
   components: {
     HeaderBar
   },
@@ -157,6 +157,12 @@ export default {
     },
     linkToSearch(){
       router.push({path: 'search'})
+    },
+    linkToBookshelf(){
+      router.push({path: 'bookshelf'})
+    },
+    linkToCategory(id){
+      router.push({path: 'category', query:{categoryId: id}})
     },
     getList (){
       let self = this;

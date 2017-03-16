@@ -1,15 +1,15 @@
 <template>
     <div class="header-bar">
         <mu-appbar :title="title" :zDepth=2 class="top-fixed">
-            <mu-icon-button :icon="leftIcon" :url="url" slot="left" @click="linkTo"/>
-            <mu-icon-button :icon="rightIcon" slot="right" @click="letShow"/> 
+            <mu-icon-button :icon="leftIcon" slot="left" @click="leftHandle"/>
+            <mu-icon-button :icon="rightIcon" slot="right" @click="rightHandle"/> 
         </mu-appbar>
 
-        <mu-appbar :zDepth="1" class="top-fixed search-box" v-if="!show">
+        <!--<mu-appbar :zDepth="1" class="top-fixed search-box">
             <mu-icon value="search" color="#2fbcd3" slot="left"/>
             <mu-text-field hintText="输入书名"/>
             <span slot="right" class="cancle" @click="letHide">取消</span>
-        </mu-appbar>
+        </mu-appbar>-->
     </div>  
 </template>
 
@@ -19,22 +19,18 @@ const router = new Router();
 
 export default {
   name: 'headerBar',
-  props: ['title','leftIcon','rightIcon', 'url'],
+  props: ['title','leftIcon','rightIcon'],
   data () {
     return {
-       show: true,
+
     }
   },
    methods: {
-    linkTo(){
-      router.push({path: this.url})
+    leftHandle(){
+        this.$emit('leftClick')
     },
-    letShow(){
-        this.show = false;
-        
-    },
-    letHide(){
-      this.show = true;
+    rightHandle(){
+        this.$emit('rightClick')
     }
   }
    

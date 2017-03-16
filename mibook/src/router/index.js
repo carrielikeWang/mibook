@@ -9,6 +9,8 @@ import Home from '@/components/pages/Home'
 import BookDetail from '@/components/pages/BookDetail'
 import Bookshelf from '@/components/pages/Bookshelf'
 import Search from '@/components/pages/Search'
+import Category from '@/components/pages/Category'
+
 
 
 Vue.use(VueResource)
@@ -37,6 +39,11 @@ export default new Router({
       path: '/search',
       name: 'Search',
       component: Search
+    },
+    {
+      path: '/category',
+      name: 'Category',
+      component: Category
     }
   ]
 })

@@ -1,7 +1,7 @@
 <template>
   <div class="search">
        <!--头部导航-->
-    <headerBar title="觅书" leftIcon="arrow_back" rightIcon="bookshelf" url="bookshelf"></headerBar>
+    <headerBar title="觅书" leftIcon="arrow_back" @leftClick="goBack"></headerBar>
     <div class="grid-container">
         <mu-text-field type="text" hintText="书名/作者" icon="search"/>
     </div>
@@ -22,6 +22,11 @@ export default {
   },
   components: {
       headerBar: HeaderBar
+  },
+  methods: {
+      goBack(){
+        window.history.back();
+      }
   }
 }
 </script>

@@ -1,20 +1,20 @@
 <template>
-  <div class="bookshelf">
+  <div class="category">
     <!--头部导航-->
-    <headerBar title="书架" leftIcon="shop" rightIcon="search" @rightClick="linkToSearch"  @leftClick="linkToBookshop"></headerBar>
+    <headerBar title="分类" leftIcon="arrow_back" @leftClick="goBack"></headerBar>
     
     <!--主体部分-->
 
     <div class="grid-container">
-      <mu-flexbox :gutter="10">
-        <mu-flexbox-item class="mi-flexbox-item" v-for="tile in list" :key="tile.bookId" align="center" @click.native="linkToBookDetail(tile.bookId)">
-          <div class="paper">
-            <img :src="tile.image" alt="">
-          </div>
-          <p class="book-title" >{{tile.title}}</p>
-          <p class="book-author">{{tile.author}}</p>
-        </mu-flexbox-item>
-      </mu-flexbox>
+      <mu-list>  
+           <mu-list-item  :title="categoryItem.title"  v-for="categoryItem in list" :key="categoryItem.bookId" @click.native="linkToBookDetail(categoryItem.bookId)" titleClass="tal" describeTextClass="tal">
+            <mu-avatar :src="categoryItem.image" slot="leftAvatar"/>
+            <span slot="describe">
+              {{categoryItem.description}}
+            </span>
+          </mu-list-item>
+           
+        </mu-list>
     </div>
   </div>
 </template>
@@ -32,28 +32,30 @@ import book3 from '../../assets/images/book3.jpg'
 
 
 export default {
-  name: 'bookshelf',
+  name: 'category',
   data () {
     return {
-       title: "书架",
-       titleBarClass: "title-bar-class",
-       show: true,
        list: [
          {
             bookId: "123",
             image: book1,
             title: '三生三世十里桃花',
-            author: '唐七公子'
+            author: '唐七公子',
+            description: "巴拉巴拉啦啦啦啦"
           }, {
             bookId: "456",
             image: book2,
             title: '三生三世十里桃花',
-            author: '唐七公子'
+            author: '唐七公子',
+            description: "巴拉巴拉啦啦啦啦"
+            
           }, {
             bookId: "789",
             image: book3,
             title: '三生三世十里桃花',
-            author: '唐七公子'
+            author: '唐七公子',
+            description: "巴拉巴拉啦啦啦啦"
+            
           }
         ]
     }
@@ -65,11 +67,8 @@ export default {
     linkToBookDetail(id){
       router.push({path: 'bookdetail', query: {bookId: id}})
     },
-    linkToSearch(){
-      router.push({path: 'search'})
-    },
-    linkToBookshop(){
-       router.push({path: '/'})
+    goBack(){
+      window.history.back();
     }
   }
    
