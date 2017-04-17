@@ -1,6 +1,18 @@
 /**
  * Created by yatessss on 16/6/22.
  */
+//获取 url 后的某一个参数
+exports.getQueryString = (name) => {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+  var r = window.location.hash.split("?")[1].match(reg); //获取url中"?"符后的字符串并正则匹配
+
+  var context = "";
+  if (r != null)
+    context = r[2];
+  reg = null;
+  r = null;
+  return context == null || context == "" || context == "undefined" ? "" : context;
+}
 
 /**
  * 替换url

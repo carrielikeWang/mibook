@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+// import Vuex from 'vuex'
 import Router from 'vue-router'
 import MuseUI from 'muse-ui'
 import VueResource from 'vue-resource'
@@ -15,7 +15,7 @@ import Category from '@/components/pages/Category'
 
 Vue.use(VueResource)
 Vue.use(Router)
-Vue.use(Vuex)
+// Vue.use(Vuex)
 Vue.use(MuseUI)
 
 export default new Router({

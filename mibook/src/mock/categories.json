@@ -1,0 +1,42 @@
+{
+    "modelId": "003",
+    "modelName": "全部分类",
+    "list": [
+        {
+            "categoryId": "0031",
+            "image": "http://img3x8.ddimg.cn/92/3/23464478-1_b_5.jpg",
+            "name": "小说",
+            "description": "悬疑、官场等34个分类"
+        },
+        {
+            "categoryId": "0032",
+            "image": "http://img3x8.ddimg.cn/85/10/23699398-1_b_1.jpg",
+            "name": "互联网",
+            "description": ""
+        },
+        {
+            "categoryId": "0033",
+            "image": "http://img3x8.ddimg.cn/18/25/1900465398-1_b_0.jpg",
+            "name": "成功励志",
+            "description": "礼仪、经典等20个分类"
+        },
+        {
+            "categoryId": "0034",
+            "image": "http://img3x2.ddimg.cn/15/5/24242442-1_l_5.jpg",
+            "name": "青春",
+            "description": "校园、情感等34个分类"
+        },
+        {
+            "categoryId": "0035",
+            "image": "http://img3x4.ddimg.cn/26/10/23951294-1_b_20.jpg",
+            "name": "历史",
+            "description": "史家明珠、逸闻野史等14个分类"
+        },
+        {
+            "categoryId": "0035",
+            "image": "http://img3x8.ddimg.cn/2/18/22781288-1_b_7.jpg",
+            "name": "心理学",
+            "description": "变态心理、女性心理等41个分类"
+        }
+    ]
+}

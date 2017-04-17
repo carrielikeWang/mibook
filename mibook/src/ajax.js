@@ -2,10 +2,10 @@
 //用 import 会报错 Cannot assign to read only property 'exports' of object '#<Object>'
 var Vue = require('vue');
 
-module.exports =  (params) => {
+const ajax =  (params) => {
     Vue.default.http.options.headers = {
         'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8;',
-        'Access-Control-Allow-Origin': 'http://dushu.xiaomi.com'
+        // 'Access-Control-Allow-Origin': 'http://dushu.xiaomi.com'
     }
     Vue.default.http.options.credentials = true;
     
@@ -18,7 +18,7 @@ module.exports =  (params) => {
     Vue.default.http({
         url: params.url,
         method: params.method,
-        data:params.data || {}
+        data: params.data || {}
     }).then((response) => {
         let data = response.data;
         params.successCallback(data);
@@ -28,6 +28,22 @@ module.exports =  (params) => {
     }).catch((response) => {
         console.log(response)
     });
+}
+
+module.exports = {
+    get: function(url, data, cb){
+        ajax({
+            url: url,
+            method: "GET",
+            data: data,
+            successCallback: (res) => {
+                cb(res);
+            },
+            errorCallback: (error) => {
+                console.log(error);
+            }
+        })
+    }
 }
 
 // module.exports = function (url, callback) {

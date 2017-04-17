@@ -1,13 +1,13 @@
 <template>
   <div class="bookshelf">
     <!--头部导航-->
-    <headerBar title="书架" leftIcon="shop" rightIcon="search" @rightClick="linkToSearch"  @leftClick="linkToBookshop"></headerBar>
+    <headerBar title="书架" leftIcon="shop" rightIcon="search" @rightClick="turnTo('search')"  @leftClick="turnTo('/')" ></headerBar>
     
     <!--主体部分-->
 
     <div class="grid-container">
       <mu-flexbox :gutter="10">
-        <mu-flexbox-item class="mi-flexbox-item" v-for="tile in list" :key="tile.bookId" align="center" @click.native="linkToBookDetail(tile.bookId)">
+        <mu-flexbox-item class="mi-flexbox-item" v-for="tile in list" :key="tile.bookId" align="center" @click.native="turnTo('/bookdetail',{bookId: tile.bookId})">
           <div class="paper">
             <img :src="tile.image" alt="">
           </div>
@@ -62,14 +62,11 @@ export default {
     headerBar: HeaderBar
   },
   methods: {
-    linkToBookDetail(id){
-      router.push({path: 'bookdetail', query: {bookId: id}})
+    turnTo(page,query){
+      router.push({path: page,query: query})
     },
-    linkToSearch(){
-      router.push({path: 'search'})
-    },
-    linkToBookshop(){
-       router.push({path: '/'})
+    turnBack(){
+      window.history.back();
     }
   }
    
